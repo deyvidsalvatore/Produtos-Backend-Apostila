@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Teste de CORs</title>
+</head>
+<body>
+<div id="json-container">
+</div>
+<script>
+    fetch('http://localhost:8080/api/v1/produtos')
+        .then(response => response.json())
+        .then(data => {
+            const jsonString = JSON.stringify(data, null, 2);
+            const jsonContainer = document.getElementById('json-container');
+            const preElement = document.createElement('pre');
+            preElement.textContent = jsonString;
+            jsonContainer.appendChild(preElement);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+</script>
+</body>
+</html>
